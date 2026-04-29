@@ -2,7 +2,6 @@
 User-agent: *
 Allow: /
 
-# Optional: Yandex uses Host; Google ignores it
-Host: https://venilabs.com
+Host: https://venilabs.viilasa.com
 
-Sitemap: https://venilabs.com/sitemap.xml
+Sitemap: https://venilabs.viilasa.com/sitemap.xml

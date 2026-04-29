@@ -5,7 +5,7 @@ import { SiteFooter } from '../components/SiteFooter'
 import { ThemeToggle } from '../components/ThemeToggle'
 import { usePageMeta } from '../hooks/usePageMeta'
 import { getBlogBySlug, getRelatedPosts } from '../lib/blogs'
-import { SITE_URL } from '../lib/seo'
+import { ORG_JSONLD_ID, SITE_URL } from '../lib/seo'
 
 const MAX_CRUMB = 52
 
@@ -42,7 +42,7 @@ export function BlogPostPage() {
       datePublished: post.date,
       dateModified: post.date,
       author: { '@type': 'Person', name: post.author },
-      publisher: { '@id': 'https://venilabs.com/#org' },
+      publisher: { '@id': ORG_JSONLD_ID },
       mainEntityOfPage: {
         '@type': 'WebPage',
         '@id': `${SITE_URL}/blogs/${post.slug}`,
