@@ -11,6 +11,7 @@ export function BlogsPage() {
     description:
       'Guides on website design in Goa, pricing, mobile-first sites, local SEO, and hospitality—written to help small businesses get found and convert more enquiries.',
     path: '/blogs',
+    variant: 'blog',
   })
 
   return (

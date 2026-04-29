@@ -24,6 +24,7 @@ export function BlogPostPage() {
     description: post?.description ?? 'The requested blog post does not exist.',
     path: `/blogs/${slug}`,
     type: 'article',
+    variant: 'blog',
   })
 
   useEffect(() => {
