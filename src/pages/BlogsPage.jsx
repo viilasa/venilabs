@@ -7,9 +7,9 @@ import { blogs } from '../lib/blogs'
 
 export function BlogsPage() {
   usePageMeta({
-    title: 'Venilabs Blog | Website Design & SEO for Goa Businesses',
+    title: 'Website Design in Goa | Venilabs Blog—Guides, SEO & Local Leads',
     description:
-      'Practical articles on affordable website design, mobile-first UX, and local SEO for Goa — from Venilabs, an independent web design studio focused on leads.',
+      'Guides on website design in Goa, pricing, mobile-first sites, local SEO, and hospitality—written to help small businesses get found and convert more enquiries.',
     path: '/blogs',
   })
 
