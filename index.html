@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Venilabs | Premium Web Design in Goa</title>
+    <meta
+      name="description"
+      content="Venilabs builds premium, mobile-first websites in Goa that convert visitors into paying clients."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Venilabs | Premium Web Design in Goa" />
+    <meta
+      property="og:description"
+      content="High-converting websites for Goa businesses. Built fast, mobile-first, and SEO-ready."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://venilabs.com/" />
+    <link rel="canonical" href="https://venilabs.com/" />
+    <script>
+      (function () {
+        try {
+          var k = 'venilabs-theme'
+          var s = localStorage.getItem(k)
+          var t =
+            s === 'dark' || s === 'light'
+              ? s
+              : matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light'
+          document.documentElement.setAttribute('data-theme', t)
+          document.documentElement.style.colorScheme = t === 'dark' ? 'dark' : 'light'
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light')
+        }
+      })()
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Venilabs",
+        "areaServed": "Goa",
+        "url": "https://venilabs.com",
+        "description": "Premium web design studio for local businesses in Goa"
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
