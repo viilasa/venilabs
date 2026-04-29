@@ -1,7 +1,10 @@
 import { useState } from 'react'
-import { CONTACT_EMAIL } from '../lib/siteLinks'
+import { CONTACT_EMAIL, FORMSUBMIT_AJAX_URL } from '../lib/siteLinks'
 
-/** Set VITE_CONTACT_FORM_ENDPOINT in `.env` to a Formspree or compatible POST URL */
+/**
+ * Optional override: set `VITE_CONTACT_FORM_ENDPOINT` to a Formspree-style JSON POST URL.
+ * Otherwise submissions use FormSubmit (formsubmit.co) → inbox in siteLinks.
+ */
 const CONTACT_FORM_ENDPOINT =
   typeof import.meta.env.VITE_CONTACT_FORM_ENDPOINT === 'string'
     ? import.meta.env.VITE_CONTACT_FORM_ENDPOINT.trim()
@@ -15,6 +18,8 @@ export function ContactForm({ variant = 'default' }) {
   const [message, setMessage] = useState('')
   const [status, setStatus] = useState('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  /** True only when FormSubmit/backend failed and we fell back to mailto */
+  const [viaMailto, setViaMailto] = useState(false)
 
   const resetFeedback = () => {
     setErrorMessage('')
@@ -34,6 +39,7 @@ export function ContactForm({ variant = 'default' }) {
     }
 
     setStatus('sending')
+    setViaMailto(false)
 
     if (CONTACT_FORM_ENDPOINT) {
       try {
@@ -58,12 +64,38 @@ export function ContactForm({ variant = 'default' }) {
       return
     }
 
-    const body = encodeURIComponent(
-      `Name: ${payload.name}\nEmail: ${payload.email}\nPhone: ${payload.phone}\n\n${payload.message}`,
-    )
-    const subject = encodeURIComponent(`Website inquiry · ${payload.name}`)
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
-    setStatus('success')
+    try {
+      const res = await fetch(FORMSUBMIT_AJAX_URL, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...payload,
+          _subject: `Venilabs website inquiry · ${payload.name}`,
+          _replyto: payload.email,
+        }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        const msg = typeof data.message === 'string' ? data.message : 'Request failed'
+        throw new Error(msg)
+      }
+      setStatus('success')
+      setName('')
+      setEmail('')
+      setPhone('')
+      setMessage('')
+    } catch {
+      const body = encodeURIComponent(
+        `Name: ${payload.name}\nEmail: ${payload.email}\nPhone: ${payload.phone}\n\n${payload.message}`,
+      )
+      const subject = encodeURIComponent(`Website inquiry · ${payload.name}`)
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
+      setViaMailto(true)
+      setStatus('success')
+    }
   }
 
   return (
@@ -127,9 +159,9 @@ export function ContactForm({ variant = 'default' }) {
 
         {status === 'success' ? (
           <p className="contact-form-note contact-form-success" role="status">
-            {CONTACT_FORM_ENDPOINT
-              ? 'Thanks — we received your message and will reply soon.'
-              : 'Your email client should open — send the draft and we will get back to you.'}
+            {viaMailto
+              ? 'Your email app should open — send the draft and we will reply shortly.'
+              : 'Thanks — we received your message and will reply soon.'}
           </p>
         ) : null}
         {status === 'error' && errorMessage ? (

@@ -1,9 +1,11 @@
+import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { BlogSubnav } from '../components/BlogSubnav'
 import { SiteFooter } from '../components/SiteFooter'
 import { ThemeToggle } from '../components/ThemeToggle'
 import { usePageMeta } from '../hooks/usePageMeta'
 import { getBlogBySlug, getRelatedPosts } from '../lib/blogs'
+import { SITE_URL } from '../lib/seo'
 
 const MAX_CRUMB = 52
 
@@ -23,6 +25,34 @@ export function BlogPostPage() {
     path: `/blogs/${slug}`,
     type: 'article',
   })
+
+  useEffect(() => {
+    const prior = document.getElementById('blog-article-jsonld')
+    prior?.remove()
+    if (!post) return
+
+    const el = document.createElement('script')
+    el.id = 'blog-article-jsonld'
+    el.type = 'application/ld+json'
+    el.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: post.title,
+      description: post.description,
+      datePublished: post.date,
+      dateModified: post.date,
+      author: { '@type': 'Person', name: post.author },
+      publisher: { '@id': 'https://venilabs.com/#org' },
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': `${SITE_URL}/blogs/${post.slug}`,
+      },
+    })
+    document.head.appendChild(el)
+    return () => {
+      el.remove()
+    }
+  }, [post])
 
   if (!post) {
     return (

@@ -1,4 +1,8 @@
+# Venilabs — allow full crawl; discovery via sitemap
 User-agent: *
 Allow: /
+
+# Optional: Yandex uses Host; Google ignores it
+Host: https://venilabs.com
 
 Sitemap: https://venilabs.com/sitemap.xml

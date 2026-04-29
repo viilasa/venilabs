@@ -52,9 +52,9 @@ export function HomePage() {
     filledAvailabilitySlots > 0 ? Math.min(filledAvailabilitySlots, 4) - 1 : -1
 
   usePageMeta({
-    title: 'Venilabs Local Goa | High-Converting Premium Websites',
+    title: 'Venilabs — Affordable Website Designer Goa | Fast, SEO-Ready Sites',
     description:
-      'Venilabs builds premium, mobile-first websites for Goa businesses in 7-10 days to generate more calls, WhatsApp leads, and bookings.',
+      'Venilabs is Goa’s affordable website designer: premium mobile-first sites in 7–10 days, built for calls, WhatsApp leads, and bookings. Great value vs typical agency pricing.',
     path: '/',
   })
 
@@ -130,10 +130,9 @@ export function HomePage() {
         <section className="section problem-section">
           <div className="problem-layout">
             <div>
-              <h2>Your website is costing you clients.</h2>
+              <h2>Your website is costing you clients — especially on Google in Goa.</h2>
               <p>
-                Most businesses in Goa look outdated online. Your competitors are not better -
-                they just look more premium.
+                Most local businesses need an affordable website designer who understands mobile traffic and local search. If your site looks dated, people pick a competitor who looks more trustworthy.
               </p>
               <p className="strong">Better design = more trust = more leads.</p>
             </div>
@@ -170,10 +169,10 @@ export function HomePage() {
             <div>
               <h2>What You Actually Get</h2>
               <ul className="bullet-list">
-                <li>Custom premium website (no templates)</li>
-                <li>Mobile optimized (90% traffic)</li>
-                <li>Lead-focused structure</li>
-                <li>Fast loading and SEO-ready setup</li>
+                <li>Custom premium website (no generic templates)</li>
+                <li>Mobile optimized — most Goa searches happen on phones</li>
+                <li>Lead-focused structure (clear calls to action)</li>
+                <li>Fast loading, clean SEO foundation, and schema-friendly markup</li>
               </ul>
               <p className="strong">
                 This is not just a website. This is a client acquisition system.
