@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom'
-import { VenilabsLogoMark } from '../components/VenilabsLogoMark'
 import { BlogSubnav } from '../components/BlogSubnav'
 import { SiteFooter } from '../components/SiteFooter'
-import { ThemeToggle } from '../components/ThemeToggle'
+import { SiteTopbar } from '../components/SiteTopbar'
 import { usePageMeta } from '../hooks/usePageMeta'
 import { blogs } from '../lib/blogs'
 
@@ -17,17 +16,7 @@ export function BlogsPage() {
 
   return (
     <div className="page blog-page">
-      <header className="topbar">
-        <div className="topbar-actions">
-          <ThemeToggle />
-        </div>
-        <Link className="topbar-brand" to="/" aria-label="Venilabs home">
-          <span className="topbar-brand-mark">
-            <VenilabsLogoMark className="logo-mark" />
-          </span>
-          <span className="topbar-brand-word">Venilabs</span>
-        </Link>
-      </header>
+      <SiteTopbar />
 
       <BlogSubnav
         backTo="/"

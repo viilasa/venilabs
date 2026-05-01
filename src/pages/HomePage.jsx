@@ -1,9 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { ContactDialog } from '../components/ContactDialog'
-import { VenilabsLogoMark } from '../components/VenilabsLogoMark'
 import { ContactForm } from '../components/ContactForm'
 import { SiteFooter } from '../components/SiteFooter'
-import { ThemeToggle } from '../components/ThemeToggle'
+import { SiteTopbar } from '../components/SiteTopbar'
 import portfolioData from '../data/projects.json'
 import testimonials from '../data/testimonials.json'
 import { WHATSAPP_CHAT_URL } from '../lib/siteLinks'
@@ -107,17 +106,7 @@ export function HomePage() {
 
   return (
     <div className="page">
-      <header className="topbar">
-        <div className="topbar-actions">
-          <ThemeToggle />
-        </div>
-        <a href="/" className="topbar-brand" aria-label="Venilabs home">
-          <span className="topbar-brand-mark">
-            <VenilabsLogoMark className="logo-mark" />
-          </span>
-          <span className="topbar-brand-word">Venilabs</span>
-        </a>
-      </header>
+      <SiteTopbar />
 
       <main>
         <section

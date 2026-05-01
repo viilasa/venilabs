@@ -210,46 +210,62 @@ a {
 }
 
 .topbar {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
   padding: 0.5rem 0 2rem;
 }
 
-.topbar-actions {
-  position: relative;
-  z-index: 1;
-  flex-shrink: 0;
+.topbar-inner {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(0.5rem, 2.5vw, 1rem);
+  width: 100%;
+  min-height: 3rem;
+}
+
+.topbar-leading {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  gap: 0.5rem;
+  flex-shrink: 0;
 }
 
 .topbar-brand {
-  display: contents;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: clamp(0.35rem, 2vw, 1rem);
+  min-width: 0;
+  text-decoration: none;
+  outline-offset: 0.35rem;
+  border-radius: 0.2rem;
+  color: inherit;
+}
+
+.topbar-brand:hover .topbar-brand-word,
+.topbar-brand:focus-visible .topbar-brand-word {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
 }
 
 .topbar-brand-mark {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  grid-column: 2;
+  justify-self: center;
   display: inline-flex;
   line-height: 0;
 }
 
 .topbar-brand-word {
-  position: relative;
-  z-index: 1;
-  flex-shrink: 0;
+  grid-column: 3;
+  justify-self: end;
+  align-self: center;
+  padding-block: 0.15rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  font-size: clamp(0.8rem, 1.85vw, 0.95rem);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-strong);
+  white-space: nowrap;
 }
 
 .theme-toggle {
@@ -402,8 +418,8 @@ a {
 }
 
 .logo-mark {
-  width: 8rem;
-  height: 8rem;
+  width: clamp(3.75rem, 11vw, 7.5rem);
+  height: clamp(3.75rem, 11vw, 7.5rem);
   flex-shrink: 0;
 }
 
