@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useState } from 'react'
+import { VENILABS_FAVICON_DARK_URL, VENILABS_FAVICON_LIGHT_URL } from '../constants/brandAssets'
 
 const STORAGE_KEY = 'venilabs-theme'
 
@@ -20,7 +21,7 @@ function applyDomTheme(theme) {
   if (faviconEl) {
     faviconEl.setAttribute(
       'href',
-      theme === 'dark' ? '/venilabs-favicon-dark.svg' : '/venilabs-favicon-light.svg',
+      theme === 'dark' ? VENILABS_FAVICON_DARK_URL : VENILABS_FAVICON_LIGHT_URL,
     )
   }
 }

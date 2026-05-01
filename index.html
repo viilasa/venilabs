@@ -2,8 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link id="site-favicon" rel="icon" type="image/svg+xml" href="/venilabs-favicon-light.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      id="site-favicon"
+      rel="icon"
+      type="image/svg+xml"
+      sizes="any"
+      href="https://res.cloudinary.com/ddhhlkyut/image/upload/v1777671530/Untitled_design_8_ig6whf.svg"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="512x512"
+      href="https://res.cloudinary.com/ddhhlkyut/image/upload/v1777671530/Untitled_design_8_ig6whf.svg"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TNW51GC6W8"></script>
     <script>
@@ -59,9 +70,12 @@
                 : 'light'
           document.documentElement.setAttribute('data-theme', t)
           document.documentElement.style.colorScheme = t === 'dark' ? 'dark' : 'light'
-          var fv = '/venilabs-favicon-' + (t === 'dark' ? 'dark' : 'light') + '.svg'
+          var fvLight =
+            'https://res.cloudinary.com/ddhhlkyut/image/upload/v1777671530/Untitled_design_8_ig6whf.svg'
+          var fvDark =
+            'https://res.cloudinary.com/ddhhlkyut/image/upload/e_negate/v1777671530/Untitled_design_8_ig6whf.svg'
           var fl = document.getElementById('site-favicon')
-          if (fl) fl.href = fv
+          if (fl) fl.href = t === 'dark' ? fvDark : fvLight
         } catch (e) {
           document.documentElement.setAttribute('data-theme', 'light')
         }
