@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { VenilabsLogoMark } from '../components/VenilabsLogoMark'
 import { BlogSubnav } from '../components/BlogSubnav'
 import { SiteFooter } from '../components/SiteFooter'
 import { ThemeToggle } from '../components/ThemeToggle'
@@ -59,12 +60,15 @@ export function BlogPostPage() {
     return (
       <div className="page blog-page">
         <header className="topbar">
-          <Link className="logo" to="/">
-            Venilabs
-          </Link>
           <div className="topbar-actions">
             <ThemeToggle />
           </div>
+          <Link className="topbar-brand" to="/" aria-label="Venilabs home">
+            <span className="topbar-brand-mark">
+              <VenilabsLogoMark className="logo-mark" />
+            </span>
+            <span className="topbar-brand-word">Venilabs</span>
+          </Link>
         </header>
 
         <BlogSubnav
@@ -93,12 +97,15 @@ export function BlogPostPage() {
   return (
     <div className="page blog-page">
       <header className="topbar">
-        <Link className="logo" to="/">
-          Venilabs
-        </Link>
         <div className="topbar-actions">
           <ThemeToggle />
         </div>
+        <Link className="topbar-brand" to="/" aria-label="Venilabs home">
+          <span className="topbar-brand-mark">
+            <VenilabsLogoMark className="logo-mark" />
+          </span>
+          <span className="topbar-brand-word">Venilabs</span>
+        </Link>
       </header>
 
       <BlogSubnav

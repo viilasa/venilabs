@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { ContactDialog } from '../components/ContactDialog'
+import { VenilabsLogoMark } from '../components/VenilabsLogoMark'
 import { ContactForm } from '../components/ContactForm'
 import { SiteFooter } from '../components/SiteFooter'
 import { ThemeToggle } from '../components/ThemeToggle'
@@ -107,12 +108,15 @@ export function HomePage() {
   return (
     <div className="page">
       <header className="topbar">
-        <a href="/" className="logo" aria-label="Venilabs home">
-          Venilabs
-        </a>
         <div className="topbar-actions">
           <ThemeToggle />
         </div>
+        <a href="/" className="topbar-brand" aria-label="Venilabs home">
+          <span className="topbar-brand-mark">
+            <VenilabsLogoMark className="logo-mark" />
+          </span>
+          <span className="topbar-brand-word">Venilabs</span>
+        </a>
       </header>
 
       <main>

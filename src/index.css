@@ -210,6 +210,7 @@ a {
 }
 
 .topbar {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -218,11 +219,37 @@ a {
 }
 
 .topbar-actions {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   gap: 0.55rem;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: flex-start;
+}
+
+.topbar-brand {
+  display: contents;
+}
+
+.topbar-brand-mark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  line-height: 0;
+}
+
+.topbar-brand-word {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-strong);
 }
 
 .theme-toggle {
@@ -374,10 +401,10 @@ a {
   }
 }
 
-.logo {
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+.logo-mark {
+  width: 8rem;
+  height: 8rem;
+  flex-shrink: 0;
 }
 
 .section {

@@ -16,6 +16,13 @@ function getPreferredTheme() {
 function applyDomTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme)
   document.documentElement.style.colorScheme = theme === 'dark' ? 'dark' : 'light'
+  const faviconEl = typeof document !== 'undefined' ? document.getElementById('site-favicon') : null
+  if (faviconEl) {
+    faviconEl.setAttribute(
+      'href',
+      theme === 'dark' ? '/venilabs-favicon-dark.svg' : '/venilabs-favicon-light.svg',
+    )
+  }
 }
 
 export const ThemeContext = createContext(null)
