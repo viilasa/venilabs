@@ -1816,16 +1816,6 @@ html[data-theme='dark'] .footer-band-pill {
   }
 }
 
-.footer-band-mega:hover,
-.footer-band-mega:focus-visible {
-  opacity: 0.72;
-}
-
-.footer-band-mega:focus-visible {
-  outline: 2px solid var(--footer-band-text);
-  outline-offset: 6px;
-}
-
 .text-link {
   font-weight: 600;
 }

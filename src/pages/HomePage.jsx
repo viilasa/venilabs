@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { ContactDialog } from '../components/ContactDialog'
+import { useEffect, useRef, useState } from 'react'
 import { ContactForm } from '../components/ContactForm'
 import { SiteFooter } from '../components/SiteFooter'
 import { SiteTopbar } from '../components/SiteTopbar'
+import { useContactDialog } from '../context/ContactDialogContext.jsx'
 import portfolioData from '../data/projects.json'
 import testimonials from '../data/testimonials.json'
 import { WHATSAPP_CHAT_URL } from '../lib/siteLinks'
@@ -51,9 +51,7 @@ function getWeeklyFilledSlots() {
 }
 
 export function HomePage() {
-  const [contactOpen, setContactOpen] = useState(false)
-  const closeContact = useCallback(() => setContactOpen(false), [])
-  const openContact = useCallback(() => setContactOpen(true), [])
+  const { openContact } = useContactDialog()
 
   const [showAllProjects, setShowAllProjects] = useState(false)
   const [activeProcessStep, setActiveProcessStep] = useState(0)
@@ -68,9 +66,9 @@ export function HomePage() {
     filledAvailabilitySlots > 0 ? Math.min(filledAvailabilitySlots, 4) - 1 : -1
 
   usePageMeta({
-    title: 'Venilabs — Affordable Website Designer Goa | Fast, SEO-Ready Sites',
+    title: 'Venilabs | Web Designer & Website Design in Goa — Affordable & Fast',
     description:
-      'Venilabs is Goa’s affordable website designer: premium mobile-first sites in 7–10 days, built for calls, WhatsApp leads, and bookings. Great value vs typical agency pricing.',
+      'Local Goa web designer for premium mobile-first websites that rank in search — Panjim, Margao & statewide. Fast 7–10 day delivery, WhatsApp-ready leads, SEO-friendly builds. Better value than typical agencies.',
     path: '/',
   })
 
@@ -354,8 +352,6 @@ export function HomePage() {
           </div>
         </section>
       </main>
-
-      <ContactDialog open={contactOpen} onClose={closeContact} />
 
       <SiteFooter />
     </div>

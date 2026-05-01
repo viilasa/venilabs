@@ -1,8 +1,10 @@
-import { Link } from 'react-router-dom'
+import { useContactDialog } from '../context/ContactDialogContext.jsx'
 import { WHATSAPP_CHAT_URL } from '../lib/siteLinks'
 
-/** Fixed bottom shortcuts: WhatsApp + Contact (#contact). Desktop shows Contact only (bottom-right). */
+/** Fixed bottom shortcuts: WhatsApp + Contact (same modal as homepage). Desktop shows Contact only (bottom-right). */
 export function StickyContactDock() {
+  const { openContact } = useContactDialog()
+
   return (
     <nav className="sticky-contact-dock" aria-label="Quick contact">
       <a
@@ -14,9 +16,14 @@ export function StickyContactDock() {
       >
         WhatsApp
       </a>
-      <Link to="/#contact" className="sticky-contact-btn sticky-contact-btn-contact" aria-label="Go to contact form">
+      <button
+        type="button"
+        className="sticky-contact-btn sticky-contact-btn-contact"
+        onClick={openContact}
+        aria-label="Open contact form"
+      >
         Contact
-      </Link>
+      </button>
     </nav>
   )
 }

@@ -5,7 +5,7 @@ import { SiteFooter } from '../components/SiteFooter'
 import { SiteTopbar } from '../components/SiteTopbar'
 import { usePageMeta } from '../hooks/usePageMeta'
 import { getBlogBySlug, getRelatedPosts } from '../lib/blogs'
-import { ORG_JSONLD_ID, SITE_URL } from '../lib/seo'
+import { DEFAULT_OG_IMAGE_ALT, ORG_JSONLD_ID, SITE_URL } from '../lib/seo'
 
 const MAX_CRUMB = 52
 
@@ -23,8 +23,12 @@ export function BlogPostPage() {
     title: post ? `${post.title} | Venilabs Blog` : 'Blog Not Found | Venilabs',
     description: post?.description ?? 'The requested blog post does not exist.',
     path: `/blogs/${slug}`,
-    type: 'article',
+    type: post ? 'article' : 'website',
     variant: 'blog',
+    articlePublishedTime: post?.date,
+    articleModifiedTime: post?.date,
+    articleAuthor: post?.author,
+    imageAlt: post ? `${post.title} — Venilabs blog` : DEFAULT_OG_IMAGE_ALT,
   })
 
   useEffect(() => {

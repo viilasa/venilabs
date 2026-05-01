@@ -3,7 +3,6 @@ import {
   CONTACT_EMAIL,
   INSTAGRAM_URL,
   LINKEDIN_URL,
-  SURYA_SITE,
 } from '../lib/siteLinks'
 
 export function SiteFooter() {
@@ -45,9 +44,7 @@ export function SiteFooter() {
             </Link>
           </div>
         </div>
-        <a className="footer-band-mega" href={SURYA_SITE} target="_blank" rel="noopener noreferrer">
-          VENILABS
-        </a>
+        <span className="footer-band-mega">VENILABS</span>
       </div>
     </footer>
   )
