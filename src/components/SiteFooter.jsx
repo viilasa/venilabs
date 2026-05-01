@@ -13,10 +13,14 @@ export function SiteFooter() {
         <div className="footer-band-top">
           <div className="footer-band-intro">
             <p className="footer-band-eyebrow">
-              Have questions, ideas, or just curious? Drop us a message at
+              Have questions, ideas, or just curious?
             </p>
-            <a className="footer-band-email" href={`mailto:${CONTACT_EMAIL}`}>
-              {CONTACT_EMAIL.toUpperCase()}
+            <a
+              className="footer-band-email"
+              href={`mailto:${CONTACT_EMAIL}`}
+              title={CONTACT_EMAIL}
+            >
+              Email me
             </a>
           </div>
           <div className="footer-band-pills" role="navigation" aria-label="Social and blog links">

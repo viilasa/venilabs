@@ -1,29 +1,45 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { ContactDialog } from '../components/ContactDialog'
+import { ContactForm } from '../components/ContactForm'
 import { SiteFooter } from '../components/SiteFooter'
 import { ThemeToggle } from '../components/ThemeToggle'
-import projects from '../data/projects.json'
+import portfolioData from '../data/projects.json'
 import testimonials from '../data/testimonials.json'
+import { WHATSAPP_CHAT_URL } from '../lib/siteLinks'
 import { usePageMeta } from '../hooks/usePageMeta'
+
+function buildRecentWorkList(data) {
+  return (data.clientWorks ?? []).map((c) => ({
+    title: c.title.trim(),
+    result: `${c.category} · ${c.description}`,
+    url: c.link,
+    image: c.image ?? null,
+  }))
+}
+
+const recentWork = buildRecentWorkList(portfolioData)
+
+const HERO_WIREFRAME_URL =
+  'https://res.cloudinary.com/ddhhlkyut/image/upload/v1777570348/-high-fidelity-monochrome-website-wireframe-illust_pxspaa.svg'
 
 const processSteps = [
   {
     label: 'Step 1',
     title: 'Strategy Call',
-    visualClass: 'step-visual-1',
-    bars: ['92%', '72%', '48%'],
+    illustrationSrc:
+      'https://res.cloudinary.com/ddhhlkyut/image/upload/v1777563000/1sr_sreo_jdk5xu.svg',
   },
   {
     label: 'Step 2',
     title: 'Design and Build',
-    visualClass: 'step-visual-2',
-    bars: ['76%', '90%', '62%'],
+    illustrationSrc:
+      'https://res.cloudinary.com/ddhhlkyut/image/upload/v1777563286/2nd_section_gjcjmb.svg',
   },
   {
     label: 'Step 3',
     title: 'Launch and Start Getting Leads',
-    visualClass: 'step-visual-3',
-    bars: ['88%', '64%', '94%'],
+    illustrationSrc:
+      'https://res.cloudinary.com/ddhhlkyut/image/upload/v1777563827/-minimalist-vector-line-art-illustration--premium-_jldijf.svg',
   },
 ]
 
@@ -42,9 +58,9 @@ export function HomePage() {
   const [showAllProjects, setShowAllProjects] = useState(false)
   const [activeProcessStep, setActiveProcessStep] = useState(0)
   const processSectionRef = useRef(null)
-  const featuredProjects = projects.slice(0, 3)
-  const remainingProjects = projects.slice(3)
-  const visibleProjects = showAllProjects ? projects : featuredProjects
+  const featuredProjects = recentWork.slice(0, 3)
+  const remainingProjects = recentWork.slice(3)
+  const visibleProjects = showAllProjects ? recentWork : featuredProjects
   const currentProcessStep = processSteps[activeProcessStep]
   const filledAvailabilitySlots = getWeeklyFilledSlots()
   /** Rightmost lit dot among slots 1–4 (5th stays empty UI). Only this one pulses. */
@@ -100,7 +116,13 @@ export function HomePage() {
       </header>
 
       <main>
-        <section className="hero section">
+        <section
+          className="hero section"
+          style={{
+            '--hero-wireframe-url': `url("${HERO_WIREFRAME_URL}")`,
+          }}
+        >
+          <div className="hero-bg-art" aria-hidden="true" />
           <div className="hero-content">
             <h1>Websites That Turn Visitors Into Paying Clients</h1>
             <p className="lead">
@@ -117,14 +139,6 @@ export function HomePage() {
               <li>Built for conversions</li>
             </ul>
           </div>
-          <div className="mockup">
-            <p>Website Preview</p>
-            <div className="mockup-card">
-              <div className="line lg" />
-              <div className="line" />
-              <div className="line sm" />
-            </div>
-          </div>
         </section>
 
         <section className="section problem-section">
@@ -137,16 +151,15 @@ export function HomePage() {
               <p className="strong">Better design = more trust = more leads.</p>
             </div>
             <div className="problem-illustration" aria-hidden="true">
-              <div className="problem-window">
-                <div className="problem-dot-row">
-                  <span />
-                  <span />
-                  <span />
-                </div>
-                <div className="problem-bar lg" />
-                <div className="problem-bar" />
-                <div className="problem-bar sm" />
-              </div>
+              <img
+                className="problem-section-svg"
+                src="https://res.cloudinary.com/ddhhlkyut/image/upload/v1777569048/-minimalist-vector-line-art-illustration--premium-_3_ef4agv.svg"
+                alt=""
+                width={1024}
+                height={1024}
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </div>
         </section>
@@ -154,17 +167,15 @@ export function HomePage() {
         <section className="section feature-section">
           <div className="feature-layout">
             <div className="feature-illustration" aria-hidden="true">
-              <div className="feature-window">
-                <div className="feature-row lg" />
-                <div className="feature-row" />
-                <div className="feature-row sm" />
-                <div className="feature-grid">
-                  <span />
-                  <span />
-                  <span />
-                  <span />
-                </div>
-              </div>
+              <img
+                className="feature-section-svg"
+                src="https://res.cloudinary.com/ddhhlkyut/image/upload/v1777569323/-minimalist-vector-line-art-illustration--premium-_5_ffkumy.svg"
+                alt=""
+                width={1024}
+                height={1024}
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div>
               <h2>What You Actually Get</h2>
@@ -184,16 +195,27 @@ export function HomePage() {
         <section className="section recent-section">
           <h2>Recent Work</h2>
           <div className="grid recent-grid">
-            {visibleProjects.map((project) => (
+            {visibleProjects.map((project, index) => (
               <a
                 className="card work-card-link"
-                key={project.title}
+                key={`${project.title}-${index}`}
                 href={project.url}
-                target="_blank"
-                rel="noreferrer"
+                {...(project.url && project.url !== '#'
+                  ? { target: '_blank', rel: 'noreferrer' }
+                  : {})}
               >
                 <article>
-                  <div className="thumb" aria-hidden="true" />
+                  <div
+                    className={`thumb${project.image ? ' thumb-has-image' : ''}`}
+                    aria-hidden="true"
+                    style={
+                      project.image
+                        ? {
+                            background: `var(--bg-muted-2) url(${project.image}) center center / cover no-repeat`,
+                          }
+                        : undefined
+                    }
+                  />
                   <h3>{project.title}</h3>
                   <p>{project.result}</p>
                 </article>
@@ -220,17 +242,17 @@ export function HomePage() {
 
         <section className="section process-scroll-section" ref={processSectionRef}>
           <div className="process-sticky">
-            <div className={`process-illustration ${currentProcessStep.visualClass}`} aria-hidden="true">
-              <div className="process-window">
-                <div className="process-dot-row">
-                  <span />
-                  <span />
-                  <span />
-                </div>
-                {currentProcessStep.bars.map((width) => (
-                  <div className="process-line" style={{ width }} key={width} />
-                ))}
-              </div>
+            <div className="process-illustration" aria-hidden="true">
+              <img
+                key={activeProcessStep}
+                className="process-section-svg"
+                src={currentProcessStep.illustrationSrc}
+                alt=""
+                width={1024}
+                height={1024}
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div className="process-right">
               <h2 className="process-main-heading">Simple 3-Step Process</h2>
@@ -287,27 +309,42 @@ export function HomePage() {
           </div>
         </section>
 
-        <section className="section">
-          <h2>We Only Take 5 Clients Per Month</h2>
-          <p>To maintain quality and results. Once slots are full, bookings close.</p>
-          <div className="availability-dots" aria-label="Monthly slots availability indicator">
-            {[0, 1, 2, 3, 4].map((index) => {
-              const isFilled = index < filledAvailabilitySlots && index < 4
-              const blinksLatest = isFilled && index === latestFilledDotIndex
-              return (
-                <span
-                  key={index}
-                  className={`availability-dot${isFilled ? ' is-filled' : ''}${
-                    blinksLatest ? ' is-blinking' : ''
-                  }`}
-                />
-              )
-            })}
+        <section className="section availability-section">
+          <div className="availability-layout">
+            <div className="availability-copy">
+              <h2>We Only Take 5 Clients Per Month</h2>
+              <p>To maintain quality and results. Once slots are full, bookings close.</p>
+              <div className="availability-dots" aria-label="Monthly slots availability indicator">
+                {[0, 1, 2, 3, 4].map((index) => {
+                  const isFilled = index < filledAvailabilitySlots && index < 4
+                  const blinksLatest = isFilled && index === latestFilledDotIndex
+                  return (
+                    <span
+                      key={index}
+                      className={`availability-dot${isFilled ? ' is-filled' : ''}${
+                        blinksLatest ? ' is-blinking' : ''
+                      }`}
+                    />
+                  )
+                })}
+              </div>
+            </div>
+            <div className="availability-art" aria-hidden="true">
+              <img
+                className="availability-section-svg"
+                src="https://res.cloudinary.com/ddhhlkyut/image/upload/v1777567087/-minimalist-vector-line-art-illustration--premium-_2_g6dvay.svg"
+                alt=""
+                width={1024}
+                height={1024}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
           </div>
         </section>
 
         <section className="section cta-section" id="contact">
-          <div className="cta-layout cta-layout-contact-only">
+          <div className="cta-layout">
             <div className="cta-copy">
               <h2>Ready to Look Premium?</h2>
               <p className="cta-lead">Let us build a website that actually brings clients.</p>
@@ -315,11 +352,12 @@ export function HomePage() {
                 <button type="button" className="btn btn-solid" onClick={openContact}>
                   Get My Website
                 </button>
-                <a className="btn btn-outline" href="https://wa.me/919876543210" target="_blank" rel="noreferrer">
+                <a className="btn btn-outline" href={WHATSAPP_CHAT_URL} target="_blank" rel="noopener noreferrer">
                   WhatsApp
                 </a>
               </div>
             </div>
+            <ContactForm />
           </div>
         </section>
       </main>

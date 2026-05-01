@@ -1,32 +1,46 @@
-[
-  {
-    "title": "Sunset Realty Goa",
-    "result": "Before: low trust -> After: premium lead flow",
-    "url": "https://example.com/sunset-realty"
-  },
-  {
-    "title": "Casa Interiors",
-    "result": "Before: generic site -> After: clear inquiries daily",
-    "url": "https://example.com/casa-interiors"
-  },
-  {
-    "title": "Coastal Dental Studio",
-    "result": "Before: outdated look -> After: premium perception",
-    "url": "https://example.com/coastal-dental"
-  },
-  {
-    "title": "Goa Luxe Stays",
-    "result": "Before: poor bookings -> After: stronger direct booking calls",
-    "url": "https://example.com/goa-luxe-stays"
-  },
-  {
-    "title": "Nova Fitness Club",
-    "result": "Before: low walk-ins -> After: high-intent trial signups",
-    "url": "https://example.com/nova-fitness"
-  },
-  {
-    "title": "Harbor Legal Advisors",
-    "result": "Before: static brochure site -> After: lead-first consultation flow",
-    "url": "https://example.com/harbor-legal"
-  }
-]
+{
+  "clientWorks": [
+    {
+      "title": "Abhijit Fitness",
+      "category": "Gym & Fitness",
+      "description": "Professional fitness website for a gym business.",
+      "link": "https://abhijitfitness.com/",
+      "image": "https://res.cloudinary.com/ddhhlkyut/image/upload/v1740478053/30days_ntuivv.png"
+    },
+    {
+      "title": "Ira Estates ",
+      "category": "Real Estates Companay",
+      "description": "Luxury Private Villa in Goa & Kasauli",
+      "link": "https://ira-mu.vercel.app/index.html",
+      "image": "https://res.cloudinary.com/ddhhlkyut/image/upload/q_auto/f_auto/v1776102628/ira_nhitnp.svg"
+    },
+    {
+      "title": "Fresh Facility Mangement Services",
+      "category": "Management Service",
+      "description": "Comprehensive Facility Management Solutions.",
+      "link": "https://ffmsindia.com/",
+      "image": "https://res.cloudinary.com/ddhhlkyut/image/upload/q_auto/f_auto/v1769080407/ffms_bqoeup.png"
+    },
+    {
+      "title": "Vision Media House",
+      "category": "Media Agency",
+      "description": "Creative media production company website.",
+      "link": "http://visionmediahouse.in/",
+      "image": "https://res.cloudinary.com/ddhhlkyut/image/upload/v1765544329/Untitled_design_8_bbq2zg.png"
+    },
+    {
+      "title": "We Find Homes Goa",
+      "category": "Real Estate",
+      "description": "Real estate property finder for Goa region.",
+      "link": "https://wefindhomesgoa.com/",
+      "image": "https://res.cloudinary.com/ddhhlkyut/image/upload/v1740245015/Favicon_jgxije.svg"
+    },
+    {
+      "title": "SkyGlow",
+      "category": "Distribution Platform",
+      "description": "Distribution platform for Detergent soap.",
+      "link": "https://skyglow.netlify.app/",
+      "image": "https://res.cloudinary.com/ddhhlkyut/image/upload/v1739957955/Untitled_design_4_nmqgjq.svg"
+    }
+  ]
+}

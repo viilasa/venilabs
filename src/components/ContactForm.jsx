@@ -10,7 +10,7 @@ const CONTACT_FORM_ENDPOINT =
     ? import.meta.env.VITE_CONTACT_FORM_ENDPOINT.trim()
     : ''
 
-export function ContactForm({ variant = 'default' }) {
+export function ContactForm({ variant = 'default', onSuccess }) {
   const compact = variant === 'dialog'
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -57,6 +57,7 @@ export function ContactForm({ variant = 'default' }) {
         setEmail('')
         setPhone('')
         setMessage('')
+        onSuccess?.()
       } catch {
         setStatus('error')
         setErrorMessage('Something went wrong. Try WhatsApp or call instead.')
@@ -87,6 +88,7 @@ export function ContactForm({ variant = 'default' }) {
       setEmail('')
       setPhone('')
       setMessage('')
+      onSuccess?.()
     } catch {
       const body = encodeURIComponent(
         `Name: ${payload.name}\nEmail: ${payload.email}\nPhone: ${payload.phone}\n\n${payload.message}`,
@@ -95,6 +97,7 @@ export function ContactForm({ variant = 'default' }) {
       window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
       setViaMailto(true)
       setStatus('success')
+      onSuccess?.()
     }
   }
 
