@@ -1107,30 +1107,24 @@ html[data-theme='dark'] .contact-reminder-card {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: min(100%, 14rem);
-  aspect-ratio: 16 / 10;
-  max-height: min(10rem, 28vh);
+  width: min(100%, 22rem);
+  max-width: 100%;
+  aspect-ratio: 1;
+  max-height: min(18rem, 42vh);
   margin: 0;
-  padding: clamp(0.65rem, 2vw, 1rem);
+  padding: 0;
   box-sizing: border-box;
-  border: 1px solid var(--border);
-  border-radius: 2px;
-  /* SVG uses default black strokes on transparent bg — dark tile hid the art */
-  background: color-mix(in srgb, var(--bg-elevated) 55%, transparent);
+  border: none;
+  background: transparent;
 }
 
 .contact-reminder-art-img {
-  width: auto;
+  width: 100%;
   height: auto;
-  max-width: 88%;
-  max-height: 88%;
+  max-height: min(18rem, 42vh);
   object-fit: contain;
   pointer-events: none;
   user-select: none;
-}
-
-html[data-theme='dark'] .contact-reminder-art-figure {
-  background: color-mix(in srgb, var(--bg-muted) 50%, transparent);
 }
 
 /* Dark column: lighten black strokes for contrast */
@@ -1293,10 +1287,14 @@ html[data-theme='dark'] .contact-reminder-art-img {
   }
 
   .contact-reminder-art-figure {
-    width: min(100%, 15rem);
-    max-height: min(12rem, 42vh);
-    aspect-ratio: 4 / 3;
-    padding: clamp(0.75rem, 2.2vw, 1.1rem);
+    width: min(100%, clamp(21rem, 34vw, 26rem));
+    max-height: min(22rem, 52vh);
+    aspect-ratio: 1;
+    padding: 0;
+  }
+
+  .contact-reminder-art-img {
+    max-height: min(22rem, 52vh);
   }
 }
 

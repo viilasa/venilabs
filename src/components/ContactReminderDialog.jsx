@@ -115,8 +115,8 @@ export function ContactReminderDialog() {
                   className="contact-reminder-art-img"
                   src={CONTACT_REMINDER_ILLUSTRATION_URL}
                   alt=""
-                  width={320}
-                  height={280}
+                  width={512}
+                  height={512}
                   loading="lazy"
                   decoding="async"
                 />
