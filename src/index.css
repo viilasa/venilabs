@@ -1113,24 +1113,29 @@ html[data-theme='dark'] .contact-reminder-card {
   margin: 0;
   padding: clamp(0.65rem, 2vw, 1rem);
   box-sizing: border-box;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border);
   border-radius: 2px;
-  background: #0c0c0c;
-}
-
-html[data-theme='dark'] .contact-reminder-art-figure {
-  background: #070707;
-  border-color: rgba(255, 255, 255, 0.06);
+  /* SVG uses default black strokes on transparent bg — dark tile hid the art */
+  background: color-mix(in srgb, var(--bg-elevated) 55%, transparent);
 }
 
 .contact-reminder-art-img {
   width: auto;
   height: auto;
-  max-width: 82%;
-  max-height: 82%;
+  max-width: 88%;
+  max-height: 88%;
   object-fit: contain;
   pointer-events: none;
   user-select: none;
+}
+
+html[data-theme='dark'] .contact-reminder-art-figure {
+  background: color-mix(in srgb, var(--bg-muted) 50%, transparent);
+}
+
+/* Dark column: lighten black strokes for contrast */
+html[data-theme='dark'] .contact-reminder-art-img {
+  filter: invert(1) contrast(1.06);
 }
 
 .contact-reminder-panel {
