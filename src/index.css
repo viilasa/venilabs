@@ -1370,10 +1370,10 @@ html[data-theme='dark'] .contact-dialog-shell {
 .contact-dialog-title-text {
   margin: 0 0 0.4rem;
   font-size: clamp(1.15rem, 3vw, 1.4rem);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.2;
-  color: var(--text);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.18;
+  color: var(--text-strong);
 }
 
 .contact-dialog-sub {
@@ -1382,6 +1382,40 @@ html[data-theme='dark'] .contact-dialog-shell {
   line-height: 1.45;
   color: var(--text-muted);
   max-width: 28ch;
+}
+
+@media (max-width: 767px) {
+  .contact-dialog {
+    max-width: calc(100vw - 1rem);
+  }
+
+  .contact-dialog-shell {
+    max-height: min(94dvh, 800px);
+  }
+
+  .contact-dialog-header {
+    padding: max(1rem, env(safe-area-inset-top, 0px)) 1rem 1rem;
+  }
+
+  .contact-dialog-kicker {
+    margin-bottom: 0.45rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+  }
+
+  .contact-dialog-title-text {
+    font-size: clamp(1.42rem, 5.5vw + 0.45rem, 1.72rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 1.12;
+    margin-bottom: 0.45rem;
+  }
+
+  .contact-dialog-sub {
+    font-size: 0.92rem;
+    line-height: 1.48;
+    max-width: 36ch;
+  }
 }
 
 .contact-dialog-close {
@@ -1561,6 +1595,10 @@ html[data-theme='dark'] .contact-reminder-art-img {
   display: none;
 }
 
+.contact-reminder-mobile-head {
+  display: none;
+}
+
 .contact-reminder-kicker {
   margin: 0 0 0.32rem;
   font-size: 0.66rem;
@@ -1573,10 +1611,11 @@ html[data-theme='dark'] .contact-reminder-art-img {
 .contact-reminder-title {
   margin: 0;
   font-size: clamp(1.12rem, 2.6vw, 1.42rem);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.2;
-  color: var(--text);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.18;
+  color: var(--text-strong);
+  font-family: inherit;
 }
 
 .contact-reminder-close {
@@ -1640,13 +1679,34 @@ html[data-theme='dark'] .contact-reminder-art-img {
     display: none !important;
   }
 
+  .contact-reminder-mobile-head {
+    display: block;
+    margin: 0;
+    padding: 1rem clamp(3.25rem, 12vw, 4rem) 0.65rem clamp(1.15rem, 3.5vw, 1.4rem);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .contact-reminder-mobile-head .contact-reminder-kicker {
+    margin-bottom: 0.45rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+  }
+
+  .contact-reminder-mobile-head .contact-reminder-title {
+    font-size: clamp(1.35rem, 4.6vw + 0.55rem, 1.65rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 1.14;
+  }
+
   .contact-reminder-mobile-encourage {
     display: block;
     margin: 0;
-    padding: 0 clamp(3.1rem, 12vw, 4rem) 1rem clamp(1.05rem, 3.25vw, 1.35rem);
-    font-size: 0.92rem;
+    padding: 0.85rem clamp(3.1rem, 12vw, 4rem) 1rem clamp(1.15rem, 3.5vw, 1.4rem);
+    font-size: 0.94rem;
     font-weight: 500;
-    line-height: 1.43;
+    line-height: 1.48;
     color: var(--text-mid);
     text-align: left;
     border-bottom: 1px solid var(--border);
@@ -1891,6 +1951,57 @@ html[data-theme='dark'] .footer-band-pill {
 @supports (font-size: 1cqw) {
   .footer-band-mega {
     font-size: clamp(2.85rem, calc(106cqw / 8), 26rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .footer-expanded.footer-band {
+    margin-top: clamp(2rem, 6vw, 3rem);
+    min-height: auto;
+    padding-top: clamp(2.5rem, 8vw, 3.75rem);
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+    margin-left: -1rem;
+    margin-right: -1rem;
+    width: calc(100% + 2rem);
+    max-width: none;
+  }
+
+  .footer-inner {
+    justify-content: flex-start;
+    gap: clamp(1.5rem, 4vw, 2.25rem);
+    padding-inline: max(1rem, env(safe-area-inset-left, 0px)) max(1rem, env(safe-area-inset-right, 0px));
+  }
+
+  .footer-band-top {
+    gap: clamp(1.1rem, 3vw, 1.75rem);
+  }
+
+  .footer-band-eyebrow {
+    font-size: clamp(0.76rem, 0.5vw + 0.7rem, 0.95rem);
+    line-height: 1.35;
+  }
+
+  .footer-band-email {
+    font-size: clamp(1.35rem, 3.5vw + 0.72rem, 2.1rem);
+    line-height: 1.08;
+  }
+
+  .footer-band-mega {
+    margin-top: 0;
+    padding-top: clamp(1.6rem, 4.5vw, 2.35rem);
+    white-space: normal;
+    overflow: visible;
+    word-break: break-word;
+    hyphens: auto;
+    line-height: 0.9;
+    font-size: clamp(2.35rem, 10.5vw + 0.55rem, 4.5rem);
+    letter-spacing: -0.035em;
+  }
+
+  @supports (font-size: 1cqw) {
+    .footer-band-mega {
+      font-size: clamp(2.2rem, calc(19.5cqw), 4.25rem);
+    }
   }
 }
 

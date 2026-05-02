@@ -124,6 +124,12 @@ export function ContactReminderDialog() {
             </div>
           </aside>
           <div className="contact-reminder-panel">
+            <header className="contact-reminder-mobile-head" aria-labelledby="contact-reminder-mobile-title">
+              <p className="contact-reminder-kicker">While you&apos;re here</p>
+              <h2 id="contact-reminder-mobile-title" className="contact-reminder-title">
+                Ready to look premium online?
+              </h2>
+            </header>
             <p className="contact-reminder-mobile-encourage" id="contact-reminder-mobile-msg">
               Take a moment to fill this in—we&apos;ll reply with next steps shortly.
             </p>
