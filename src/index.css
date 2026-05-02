@@ -193,6 +193,7 @@ body {
 html {
   overflow-x: clip;
   scrollbar-gutter: stable;
+  scroll-padding-top: calc(var(--topbar-measured-height, 64px) + 0.75rem);
 }
 
 a {
@@ -212,13 +213,13 @@ a {
   padding-top: 0;
 }
 
-@media (max-width: 479px) {
+@media (max-width: 767px) {
   .page {
-    margin-top: -0.45rem;
+    margin-top: 0;
   }
 }
 
-@media (min-width: 480px) {
+@media (min-width: 768px) {
   .page {
     margin-top: -1.35rem;
   }
@@ -791,12 +792,17 @@ html[data-theme='dark'] .hero-bg-art {
   }
 
   .hero.section {
-    min-height: auto;
-    justify-content: flex-start;
+    min-height: calc(100svh - var(--topbar-measured-height, 4rem));
+    justify-content: center;
     align-items: stretch;
-    padding-top: 0;
-    padding-bottom: clamp(1rem, 3vw, 1.75rem);
+    padding-top: clamp(0.75rem, 3vw, 1.35rem);
+    padding-bottom: clamp(2rem, 7vw, 3.25rem);
     gap: 1.15rem;
+  }
+
+  .hero-content {
+    margin-inline-start: 0;
+    max-width: 100%;
   }
 
   .hero h1 {
@@ -807,9 +813,9 @@ html[data-theme='dark'] .hero-bg-art {
   }
 
   .hero .lead {
-    font-size: 0.98rem;
-    line-height: 1.5;
-    max-width: 34ch;
+    font-size: 1rem;
+    line-height: 1.55;
+    max-width: 42ch;
     margin-bottom: 0.85rem;
   }
 
@@ -856,6 +862,78 @@ html[data-theme='dark'] .hero-bg-art {
 
   .pricing-row-value {
     align-self: flex-start;
+  }
+
+  .section:not(.hero):not(.process-scroll-section):not(.cta-section) {
+    min-height: auto;
+    justify-content: flex-start;
+    padding-top: clamp(2.35rem, 6.5vw, 3.25rem);
+    padding-bottom: clamp(2.35rem, 6.5vw, 3.25rem);
+  }
+
+  .cta-section {
+    min-height: auto;
+    padding-top: clamp(2.25rem, 6vw, 3rem);
+    padding-bottom: clamp(2.75rem, 9vw, 4.25rem);
+  }
+
+  .cta-layout {
+    gap: 1.65rem;
+  }
+
+  .cta-copy .cta-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.55rem;
+  }
+
+  .cta-copy .cta-row .btn {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .testimonials-section {
+    min-height: auto;
+  }
+
+  .grid {
+    gap: 1.1rem;
+  }
+
+  .process-sticky {
+    top: var(--topbar-measured-height, 0px);
+    min-height: calc(100svh - var(--topbar-measured-height, 0px));
+    padding: clamp(1.5rem, 5vw, 2.25rem) 0;
+    align-items: start;
+  }
+
+  .process-steps-stack {
+    height: 200px;
+  }
+
+  .process-main-heading {
+    margin-bottom: 0.85rem;
+  }
+
+  .problem-layout,
+  .feature-layout {
+    gap: clamp(1.35rem, 4vw, 1.85rem);
+  }
+
+  .pricing-layout {
+    gap: 1.5rem;
+  }
+
+  .pricing-panel {
+    padding: 1.15rem 1rem;
+  }
+
+  .contact-form-panel {
+    padding: clamp(1.35rem, 4vw, 1.85rem);
+  }
+
+  .availability-dots {
+    justify-content: flex-start;
   }
 }
 
