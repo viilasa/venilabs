@@ -243,6 +243,16 @@ a {
   border-bottom: 1px solid var(--border);
 }
 
+html.topbar-menu-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+  height: 100%;
+}
+
+html.topbar-menu-open body {
+  overscroll-behavior: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .topbar-mobile-panel,
   .topbar-mobile-backdrop,
@@ -476,7 +486,7 @@ html[data-theme='dark'] .topbar-mobile-backdrop {
   background-color: var(--bg-elevated);
   border-bottom: 1px solid var(--border);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
-  transform: translateY(-100%);
+  transform: translate3d(0, -100%, 0);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -487,7 +497,7 @@ html[data-theme='dark'] .topbar-mobile-backdrop {
 }
 
 .topbar-mobile-panel.is-open {
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
