@@ -446,7 +446,10 @@ html.topbar-menu-open body {
 
 .topbar-mobile-backdrop {
   position: fixed;
-  inset: var(--topbar-measured-height, 3.35rem) 0 0 0;
+  top: var(--topbar-overlay-top, var(--topbar-measured-height, 3.35rem));
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 280;
   cursor: pointer;
   background-color: rgba(10, 10, 10, 0.45);
@@ -471,7 +474,7 @@ html[data-theme='dark'] .topbar-mobile-backdrop {
 
 .topbar-mobile-panel {
   position: fixed;
-  top: var(--topbar-measured-height, 3.35rem);
+  top: var(--topbar-overlay-top, var(--topbar-measured-height, 3.35rem));
   bottom: 0;
   left: 0;
   right: 0;
@@ -507,6 +510,54 @@ html[data-theme='dark'] .topbar-mobile-backdrop {
   max-width: 28rem;
   margin-inline: auto;
   padding-block: 1rem 1.75rem;
+}
+
+.topbar-mobile-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0 0 0.35rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar-mobile-toolbar .topbar-mobile-heading {
+  margin: 0;
+}
+
+.topbar-mobile-panel-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border-2);
+  border-radius: 0.25rem;
+  background: var(--bg-muted);
+  color: var(--text-strong);
+  cursor: pointer;
+  line-height: 0;
+  touch-action: manipulation;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.topbar-mobile-panel-close:hover,
+.topbar-mobile-panel-close:focus-visible {
+  color: var(--text);
+  background: var(--bg-warm);
+  border-color: var(--border-5);
+}
+
+.topbar-mobile-panel-close:focus-visible {
+  outline: 2px solid var(--ui);
+  outline-offset: 2px;
 }
 
 .topbar-mobile-heading {
@@ -564,6 +615,30 @@ html[data-theme='dark'] .topbar-mobile-backdrop {
 
   .topbar-inner {
     column-gap: 0.65rem;
+  }
+
+  html.topbar-menu-open .topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    max-width: none;
+    z-index: 5000;
+  }
+
+  html.topbar-menu-open .page {
+    padding-top: var(--topbar-measured-height, 4rem);
+  }
+
+  .topbar-mobile-backdrop {
+    z-index: 4000;
+  }
+
+  .topbar-mobile-panel {
+    z-index: 4100;
   }
 }
 

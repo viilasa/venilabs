@@ -10,6 +10,26 @@ const TOPBAR_NAV = [
   { to: '/#contact', label: 'Contact' },
 ]
 
+function IconCloseMenu({ className = '' }) {
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M18 6 6 18M6 6l12 12" />
+    </svg>
+  )
+}
+
 function TopbarNavLinks({ className, itemClassName, onNavigate }) {
   return (
     <ul className={className}>
@@ -76,17 +96,11 @@ export function SiteTopbar() {
     }
   }, [])
 
-  useLayoutEffect(() => {
-    if (!mobileOpen || !headerRef.current) return
-    const h = Math.round(headerRef.current.getBoundingClientRect().height)
-    document.documentElement.style.setProperty('--topbar-measured-height', `${h}px`)
-  }, [mobileOpen])
-
   useEffect(() => {
     setMobileOpen(false)
   }, [location.pathname, location.hash])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!mobileOpen) return undefined
 
     const html = document.documentElement
@@ -103,7 +117,6 @@ export function SiteTopbar() {
     const prevBodyWidth = body.style.width
     const prevBodyPaddingRight = body.style.paddingRight
 
-    html.classList.add('topbar-menu-open')
     if (scrollbarGap > 0) {
       body.style.paddingRight = `${scrollbarGap}px`
     }
@@ -115,14 +128,36 @@ export function SiteTopbar() {
     body.style.right = '0'
     body.style.width = '100%'
 
+    html.classList.add('topbar-menu-open')
+
+    const syncOverlayTop = () => {
+      const el = headerRef.current
+      if (!el) return
+      const bottom = Math.ceil(el.getBoundingClientRect().bottom)
+      html.style.setProperty('--topbar-overlay-top', `${Math.max(0, bottom)}px`)
+    }
+
+    void headerRef.current?.offsetHeight
+    syncOverlayTop()
+    const raf = window.requestAnimationFrame(() => {
+      syncOverlayTop()
+    })
+
+    window.addEventListener('resize', syncOverlayTop)
+    window.addEventListener('orientationchange', syncOverlayTop)
+
     const onKeyDown = (e) => {
       if (e.key === 'Escape') setMobileOpen(false)
     }
     document.addEventListener('keydown', onKeyDown)
 
     return () => {
+      window.cancelAnimationFrame(raf)
+      window.removeEventListener('resize', syncOverlayTop)
+      window.removeEventListener('orientationchange', syncOverlayTop)
       document.removeEventListener('keydown', onKeyDown)
       html.classList.remove('topbar-menu-open')
+      html.style.removeProperty('--topbar-overlay-top')
       html.style.overflow = prevHtmlOverflow
       body.style.overflow = prevBodyOverflow
       body.style.position = prevBodyPosition
@@ -158,9 +193,19 @@ export function SiteTopbar() {
           {...(!mobileOpen ? { inert: true } : {})}
         >
           <nav className="topbar-mobile-inner" aria-label="Primary">
-            <p id={menuHeadingId} className="topbar-mobile-heading">
-              Menu
-            </p>
+            <div className="topbar-mobile-toolbar">
+              <p id={menuHeadingId} className="topbar-mobile-heading">
+                Menu
+              </p>
+              <button
+                type="button"
+                className="topbar-mobile-panel-close"
+                onClick={closeMobile}
+                aria-label="Close menu"
+              >
+                <IconCloseMenu />
+              </button>
+            </div>
             <TopbarNavLinks
               className="topbar-links topbar-links--mobile"
               itemClassName="topbar-links-item"
